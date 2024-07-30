@@ -16,3 +16,23 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/meng', function () {
+    return "Mengrizzkuyy";
+});
+
+Route::redirect('/mengci', '/meng');
+
+Route::fallback(function () {
+    return "Halaman tidak ada skuyyy";
+});
+
+Route::view('/hello', 'hello', ['name' => 'Rizki Haddi']);
+
+Route::get('/hello-skuy', function () {
+    return view('hello', ['name' => 'Rizki Haddi Prayoga']);
+});
+
+Route::get('/login', function () {
+    return view('auth.login', ['name' => 'Rizki Haddi Prayoga']);
+});
