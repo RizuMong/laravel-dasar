@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HelloController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,16 +40,28 @@ Route::get('/login', function () {
 
 Route::get('/products/{id}', function ($productId) {
     return "Products $productId";
-});
+})->name('product.detail');
 
 Route::get('/products/{product}/item/{item}', function ($productId, $itemId) {
     return "Products $productId, Item $itemId";
-});
+})->name('product.item.detail');
 
 Route::get('/categories/{id}', function ($categoriesId) {
     return "Category nya : $categoriesId";
-})->where('id', '[0-9]+');
+})->where('id', '[0-9]+')->name('category.detail');
 
 Route::get('/users/{id?}', function ($userId = "User tidak ditemukan") {
     return "Users : $userId";
+})->name('user.detail');
+
+Route::get('/produk/{id}', function ($id) {
+    $link = route('product.detail', ['id' => $id]);
+
+    return "Link $link";
 });
+
+Route::get("/product/redirect/{id}", function ($id) {
+    return redirect()->route('product.detail', ['id' => $id]);
+});
+
+Route::get('/controller/hello', [HelloController::class, 'hello']);
