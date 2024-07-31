@@ -36,3 +36,19 @@ Route::get('/hello-skuy', function () {
 Route::get('/login', function () {
     return view('auth.login', ['name' => 'Rizki Haddi Prayoga']);
 });
+
+Route::get('/products/{id}', function ($productId) {
+    return "Products $productId";
+});
+
+Route::get('/products/{product}/item/{item}', function ($productId, $itemId) {
+    return "Products $productId, Item $itemId";
+});
+
+Route::get('/categories/{id}', function ($categoriesId) {
+    return "Category nya : $categoriesId";
+})->where('id', '[0-9]+');
+
+Route::get('/users/{id?}', function ($userId = "User tidak ditemukan") {
+    return "Users : $userId";
+});

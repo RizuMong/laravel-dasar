@@ -21,4 +21,10 @@ class RoutingTest extends TestCase
             ->assertStatus(302)
             ->assertRedirect('/meng');
     }
+
+    public function tesRoutingParameter()
+    {
+        $this->get('/products/1')
+            ->assertSeeText("Product 1");
+    }
 }
